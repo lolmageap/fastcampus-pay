@@ -1,11 +1,11 @@
-package com.example.fastcampuspay
+package com.pay.membership
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class FastcampusPayApplication
+class TestApplication
 
 fun main(args: Array<String>) {
-    runApplication<FastcampusPayApplication>(*args)
+    runApplication<TestApplication>(*args)
 }
