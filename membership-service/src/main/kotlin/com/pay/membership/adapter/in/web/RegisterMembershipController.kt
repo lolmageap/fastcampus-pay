@@ -3,6 +3,7 @@ package com.pay.membership.adapter.`in`.web
 import com.common.WebAdapter
 import com.pay.membership.application.port.`in`.RegisterMembershipCommand
 import com.pay.membership.application.port.`in`.RegisterMembershipUseCase
+import com.pay.membership.domain.Membership
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
@@ -16,13 +17,7 @@ class RegisterMembershipController(
     @PostMapping("/membership")
     fun registerMembership(
         @RequestBody request: RegisterMembershipRequest,
-    ) {
-        // TODO : 1. request
-
-        // TODO : 2. request -> command
-
-        // TODO : 3. use case ~~
-
+    ): Membership {
         val command = RegisterMembershipCommand(
             name = request.name,
             address = request.address,
@@ -31,7 +26,7 @@ class RegisterMembershipController(
             isCorp = request.isCorp,
         )
 
-        registerMembershipUseCase.registerMembership(command)
+       return registerMembershipUseCase.registerMembership(command)
     }
 
 }
