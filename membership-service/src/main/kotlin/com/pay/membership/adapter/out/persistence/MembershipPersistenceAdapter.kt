@@ -7,21 +7,23 @@ import com.pay.membership.domain.Membership.Companion.MembershipIsCorp
 import com.pay.membership.domain.Membership.Companion.MembershipIsValid
 import com.pay.membership.domain.Membership.Companion.MembershipName
 import com.common.PersistenceAdapter
+import com.pay.membership.application.port.out.FindMembershipPort
 import com.pay.membership.application.port.out.RegisterMembershipPort
+import org.springframework.data.repository.findByIdOrNull
+import java.lang.IllegalStateException
 
 @PersistenceAdapter
 class MembershipPersistenceAdapter(
     private val membershipRepository: SpringDataMembershipRepository,
-): RegisterMembershipPort{
+): RegisterMembershipPort, FindMembershipPort {
     override fun createMembership(
-        membershipId: MembershipId,
         membershipName: MembershipName,
         membershipEmail: MembershipEmail,
         membershipAddress: MembershipAddress,
         membershipIsValid: MembershipIsValid,
         membershipIsCorp: MembershipIsCorp,
-    ) {
-        membershipRepository.save(
+    ): MembershipJpaEntity {
+        return membershipRepository.save(
             MembershipJpaEntity(
                 name = membershipName.name,
                 email = membershipEmail.email,
@@ -31,5 +33,9 @@ class MembershipPersistenceAdapter(
             )
         )
     }
+
+    override fun findMembership(membershipId: MembershipId): MembershipJpaEntity =
+        membershipRepository.findByIdOrNull(membershipId.id)
+            ?: throw IllegalStateException()
 
 }
