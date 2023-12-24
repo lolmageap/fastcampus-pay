@@ -1,12 +1,13 @@
 package com.pay.membership.adapter.out.persistence
 
 import jakarta.persistence.*
+import java.util.UUID
 
 @Entity
 @Table(name = "membership")
 class MembershipJpaEntity(
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0,
+    @Id @GeneratedValue(strategy = GenerationType.UUID)
+    val id: String = UUID.randomUUID().toString(),
 
     val name: String,
 

@@ -2,5 +2,5 @@ package com.pay.membership.adapter.out.persistence
 
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface SpringDataMembershipRepository: JpaRepository<MembershipJpaEntity, Long> {
+interface SpringDataMembershipRepository: JpaRepository<MembershipJpaEntity, String> {
 }
