@@ -1,11 +1,7 @@
 package com.pay.membership.adapter.out.persistence
 
-import com.pay.membership.domain.Membership.Companion.MembershipAddress
-import com.pay.membership.domain.Membership.Companion.MembershipEmail
-import com.pay.membership.domain.Membership.Companion.MembershipId
-import com.pay.membership.domain.Membership.Companion.MembershipIsCorp
-import com.pay.membership.domain.Membership.Companion.MembershipIsValid
-import com.pay.membership.domain.Membership.Companion.MembershipName
+import com.pay.membership.domain.*
+
 import com.common.PersistenceAdapter
 import com.pay.membership.application.port.out.FindMembershipPort
 import com.pay.membership.application.port.out.RegisterMembershipPort

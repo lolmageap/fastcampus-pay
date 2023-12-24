@@ -1,5 +1,7 @@
 package com.pay.membership.application.service
 
+import com.pay.membership.domain.*
+
 import com.pay.membership.adapter.out.persistence.MembershipMapper
 import com.pay.membership.application.port.`in`.RegisterMembershipCommand
 import com.pay.membership.application.port.`in`.RegisterMembershipUseCase
@@ -17,11 +19,11 @@ class RegisterMembershipService(
     override fun registerMembership(command: RegisterMembershipCommand): Membership {
 
         val membershipJpaEntity = registerMembershipPort.createMembership(
-            Membership.Companion.MembershipName(command.name),
-            Membership.Companion.MembershipEmail(command.email),
-            Membership.Companion.MembershipAddress(command.address),
-            Membership.Companion.MembershipIsValid(command.isValid),
-            Membership.Companion.MembershipIsCorp(command.isCorp),
+            MembershipName(command.name),
+            MembershipEmail(command.email),
+            MembershipAddress(command.address),
+            MembershipIsValid(command.isValid),
+            MembershipIsCorp(command.isCorp),
         )
 
         return membershipMapper.mapToDomainEntity(membershipJpaEntity)

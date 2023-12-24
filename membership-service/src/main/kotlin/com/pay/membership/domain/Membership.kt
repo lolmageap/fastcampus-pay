@@ -24,53 +24,17 @@ class Membership private constructor(
             isValid = membershipIsValid.isValid,
             isCorp = membershipIsCorp.isCorp,
         )
-
-        class MembershipId {
-            fun membershipId(value: String) {
-                this.id = value
-            }
-
-            lateinit var id: String
-        }
-
-        class MembershipName {
-            fun membershipName(value: String) {
-                this.name = value
-            }
-
-            lateinit var name: String
-        }
-
-        class MembershipEmail {
-            fun membershipEmail(value: String) {
-                this.email = value
-            }
-
-            lateinit var email: String
-        }
-
-        class MembershipAddress {
-            fun membershipAddress(value: String) {
-                this.address = value
-            }
-
-            lateinit var address: String
-        }
-
-        class MembershipIsValid {
-            fun membershipIsValid(value: Boolean) {
-                this.isValid = value
-            }
-
-            var isValid: Boolean = false
-        }
-
-        class MembershipIsCorp {
-            fun membershipIsCorp(value: Boolean) {
-                this.isCorp = value
-            }
-
-            var isCorp: Boolean = false
-        }
     }
 }
+
+class MembershipId(val id: String)
+
+class MembershipName(val name: String)
+
+class MembershipEmail(val email: String)
+
+class MembershipAddress(val address: String)
+
+class MembershipIsValid(val isValid: Boolean = false)
+
+class MembershipIsCorp(val isCorp: Boolean = false)
