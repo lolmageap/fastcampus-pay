@@ -1,17 +1,10 @@
-plugins {
-    id("java")
-}
-
-group = "com.payment"
-version = "0.0.1-SNAPSHOT"
-
-repositories {
-    mavenCentral()
-}
+apply(plugin = "kotlin-jpa")
 
 dependencies {
-}
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
 
-tasks.getByName<Test>("test") {
-    useJUnitPlatform()
+    runtimeOnly("com.h2database:h2")
 }
