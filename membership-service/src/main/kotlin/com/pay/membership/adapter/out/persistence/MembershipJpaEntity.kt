@@ -9,15 +9,15 @@ class MembershipJpaEntity(
     @Id @GeneratedValue(strategy = GenerationType.UUID)
     val id: String = UUID.randomUUID().toString(),
 
-    val name: String,
+    var name: String,
 
-    val email: String,
+    var email: String,
 
-    val address: String,
+    var address: String,
 
-    val isValid: Boolean,
+    var isValid: Boolean,
 
-    val isCorp: Boolean,
+    var isCorp: Boolean,
 ) {
 
 }

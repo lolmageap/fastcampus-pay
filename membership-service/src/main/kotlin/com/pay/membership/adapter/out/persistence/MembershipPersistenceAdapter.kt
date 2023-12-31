@@ -1,26 +1,24 @@
 package com.pay.membership.adapter.out.persistence
 
-import com.pay.membership.domain.*
-
 import com.common.PersistenceAdapter
 import com.pay.membership.application.port.out.FindMembershipPort
 import com.pay.membership.application.port.out.ModifyMembershipPort
 import com.pay.membership.application.port.out.RegisterMembershipPort
+import com.pay.membership.domain.*
 import org.springframework.data.repository.findByIdOrNull
-import java.lang.IllegalStateException
 
 @PersistenceAdapter
 class MembershipPersistenceAdapter(
     private val membershipRepository: SpringDataMembershipRepository,
-): RegisterMembershipPort, FindMembershipPort, ModifyMembershipPort {
+) : RegisterMembershipPort, FindMembershipPort, ModifyMembershipPort {
     override fun createMembership(
         membershipName: MembershipName,
         membershipEmail: MembershipEmail,
         membershipAddress: MembershipAddress,
         membershipIsValid: MembershipIsValid,
         membershipIsCorp: MembershipIsCorp,
-    ): MembershipJpaEntity {
-        return membershipRepository.save(
+    ) =
+        membershipRepository.save(
             MembershipJpaEntity(
                 name = membershipName.name,
                 email = membershipEmail.email,
@@ -29,20 +27,27 @@ class MembershipPersistenceAdapter(
                 isCorp = membershipIsCorp.isCorp,
             )
         )
-    }
 
     override fun findMembership(membershipId: MembershipId): MembershipJpaEntity =
         membershipRepository.findByIdOrNull(membershipId.id)
             ?: throw IllegalStateException()
 
     override fun modifyMembership(
+        membershipId: MembershipId,
         membershipName: MembershipName,
         membershipEmail: MembershipEmail,
         membershipAddress: MembershipAddress,
         membershipIsValid: MembershipIsValid,
         membershipIsCorp: MembershipIsCorp,
-    ): MembershipJpaEntity {
-        TODO("Not yet implemented")
-    }
+    ) =
+        membershipRepository.findByIdOrNull(membershipId.id)
+            ?.apply {
+                name = membershipName.name
+                address = membershipAddress.address
+                email = membershipEmail.email
+                isCorp = membershipIsCorp.isCorp
+                isValid = membershipIsValid.isValid
+            }
+            ?: throw IllegalStateException()
 
 }
