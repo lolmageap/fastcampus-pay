@@ -4,6 +4,7 @@ import com.pay.membership.domain.*
 
 import com.common.PersistenceAdapter
 import com.pay.membership.application.port.out.FindMembershipPort
+import com.pay.membership.application.port.out.ModifyMembershipPort
 import com.pay.membership.application.port.out.RegisterMembershipPort
 import org.springframework.data.repository.findByIdOrNull
 import java.lang.IllegalStateException
@@ -11,7 +12,7 @@ import java.lang.IllegalStateException
 @PersistenceAdapter
 class MembershipPersistenceAdapter(
     private val membershipRepository: SpringDataMembershipRepository,
-): RegisterMembershipPort, FindMembershipPort {
+): RegisterMembershipPort, FindMembershipPort, ModifyMembershipPort {
     override fun createMembership(
         membershipName: MembershipName,
         membershipEmail: MembershipEmail,
@@ -33,5 +34,15 @@ class MembershipPersistenceAdapter(
     override fun findMembership(membershipId: MembershipId): MembershipJpaEntity =
         membershipRepository.findByIdOrNull(membershipId.id)
             ?: throw IllegalStateException()
+
+    override fun modifyMembership(
+        membershipName: MembershipName,
+        membershipEmail: MembershipEmail,
+        membershipAddress: MembershipAddress,
+        membershipIsValid: MembershipIsValid,
+        membershipIsCorp: MembershipIsCorp,
+    ): MembershipJpaEntity {
+        TODO("Not yet implemented")
+    }
 
 }
