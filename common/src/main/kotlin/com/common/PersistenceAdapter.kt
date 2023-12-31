@@ -9,4 +9,4 @@ import java.lang.annotation.Target
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Component
-annotation class PersistenceAdapter()
+annotation class PersistenceAdapter
