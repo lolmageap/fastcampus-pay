@@ -1,8 +1,11 @@
+import org.gradle.internal.classpath.Instrumented.systemProperty
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
-    id("org.springframework.boot") version "3.2.1" apply false
+    id("org.springframework.boot") version "3.2.1"
     id("io.spring.dependency-management") version "1.1.4"
+
     kotlin("jvm") version "1.9.21"
     kotlin("plugin.spring") version "1.9.21"
     kotlin("plugin.jpa") version "1.9.21"
@@ -43,8 +46,12 @@ subprojects {
 
     dependencyManagement {
         imports {
-            mavenBom(org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES)
+            mavenBom(SpringBootPlugin.BOM_COORDINATES)
         }
+    }
+
+    tasks.with {
+        systemProperty("spring.profiles.active", "local")
     }
 
     tasks.withType<KotlinCompile> {

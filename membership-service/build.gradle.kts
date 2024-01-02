@@ -18,7 +18,7 @@ dependencies {
 
 docker {
     name = "${project.rootProject}-${project.name}:$version"
-    setDockerfile(file("./Dockerfile"))
+    setDockerfile(file("../Dockerfile"))
     tasks.getByName<BootJar>("bootJar").outputs.files
     buildArgs(
         mapOf(
